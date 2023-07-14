@@ -1,13 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faça seu Pedido!</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <h1>Testando CSS</h1>
-</body>
-</html>
+<?php
+ include_once("templates/header.php");
+ include_once("process/pizza.php");
+?>
+    <div id="main-banner">
+        <h1>Faça seu Pedido</h1>
+    </div>
+    <div id="main-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Monte a pizza como desejar:</h2>
+                    <form action="process/pizza.php" method="POST" id="pizza-form">
+                        <div class="form-group">
+                            <label for="borda">Borda:</label>
+                            <select name="borda" id="borda" class="form-control">
+                                <option value="">Selecione a borda</option>
+                                <?php foreach ($bordas as $key => $value) { ?>
+                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['tipo'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="massa">Massa:</label>
+                            <select name="massa" id="massa" class="form-control">
+                                <option value="">Selecione a massa</option>
+                                <?php foreach ($massas as $key => $value) { ?>
+                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['tipo'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sabores">Sabores: (Máximo 3)</label>
+                            <select multiple name="sabores[]" id="sabores" class="form-control">
+                                <?php foreach ($sabores as $key => $value) { ?>
+                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['tipo'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Fazer Pedido!">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+ include_once("templates/footer.php");
+?>
